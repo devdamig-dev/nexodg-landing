@@ -1,0 +1,276 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Nexo DG Premium Dark Theme */
+:root {
+  /* Core backgrounds */
+  --background: #050505;
+  --foreground: #FAFAFA;
+  
+  /* Card surfaces */
+  --card: #0A0A0A;
+  --card-foreground: #FAFAFA;
+  
+  /* Popovers */
+  --popover: #0A0A0A;
+  --popover-foreground: #FAFAFA;
+  
+  /* Primary - Nexo Cyan */
+  --primary: #00D9D9;
+  --primary-foreground: #050505;
+  
+  /* Secondary */
+  --secondary: #111111;
+  --secondary-foreground: #FAFAFA;
+  
+  /* Muted */
+  --muted: #1A1A1A;
+  --muted-foreground: #888888;
+  
+  /* Accent - Cyan */
+  --accent: #00D9D9;
+  --accent-foreground: #050505;
+  
+  /* Destructive */
+  --destructive: #FF4444;
+  --destructive-foreground: #FAFAFA;
+  
+  /* Borders & Inputs */
+  --border: #222222;
+  --input: #1A1A1A;
+  --ring: #00D9D9;
+  
+  /* Charts */
+  --chart-1: #00D9D9;
+  --chart-2: #00B3B3;
+  --chart-3: #008888;
+  --chart-4: #005555;
+  --chart-5: #003333;
+  
+  /* Radius */
+  --radius: 0.75rem;
+  
+  /* Custom Nexo Variables */
+  --nexo-cyan: #00D9D9;
+  --nexo-cyan-dark: #00B3B3;
+  --nexo-cyan-glow: rgba(0, 217, 217, 0.15);
+  --nexo-cyan-glow-strong: rgba(0, 217, 217, 0.3);
+  --nexo-black: #050505;
+  --nexo-dark: #0A0A0A;
+  --nexo-gray-900: #111111;
+  --nexo-gray-800: #1A1A1A;
+  --nexo-gray-700: #2A2A2A;
+  --nexo-gray-600: #3A3A3A;
+  --nexo-gray-500: #555555;
+  --nexo-gray-400: #888888;
+  --nexo-gray-300: #AAAAAA;
+  --nexo-white: #FAFAFA;
+  
+  /* Sidebar (if needed) */
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FAFAFA;
+  --sidebar-primary: #00D9D9;
+  --sidebar-primary-foreground: #050505;
+  --sidebar-accent: #1A1A1A;
+  --sidebar-accent-foreground: #FAFAFA;
+  --sidebar-border: #222222;
+  --sidebar-ring: #00D9D9;
+}
+
+@theme inline {
+  --font-sans: var(--font-outfit), system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Nexo custom colors for Tailwind */
+  --color-nexo-cyan: var(--nexo-cyan);
+  --color-nexo-cyan-dark: var(--nexo-cyan-dark);
+  --color-nexo-black: var(--nexo-black);
+  --color-nexo-dark: var(--nexo-dark);
+  --color-nexo-gray-900: var(--nexo-gray-900);
+  --color-nexo-gray-800: var(--nexo-gray-800);
+  --color-nexo-gray-700: var(--nexo-gray-700);
+  --color-nexo-gray-600: var(--nexo-gray-600);
+  --color-nexo-gray-500: var(--nexo-gray-500);
+  --color-nexo-gray-400: var(--nexo-gray-400);
+  --color-nexo-gray-300: var(--nexo-gray-300);
+  --color-nexo-white: var(--nexo-white);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--nexo-black);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--nexo-gray-700);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--nexo-gray-600);
+  }
+  
+  /* Selection color */
+  ::selection {
+    background: var(--nexo-cyan-glow-strong);
+    color: var(--nexo-white);
+  }
+}
+
+/* Premium utility classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--nexo-cyan) 0%, var(--nexo-cyan-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glow-cyan {
+    box-shadow: 0 0 20px var(--nexo-cyan-glow), 0 0 40px var(--nexo-cyan-glow);
+  }
+  
+  .glow-cyan-strong {
+    box-shadow: 0 0 30px var(--nexo-cyan-glow-strong), 0 0 60px var(--nexo-cyan-glow);
+  }
+  
+  .glass {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  
+  .glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .grid-overlay {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  
+  /* Premium hover lift */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Animated border gradient */
+  .border-glow {
+    position: relative;
+  }
+  .border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, transparent, var(--nexo-cyan), transparent);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  .border-glow:hover::before {
+    opacity: 0.5;
+  }
+}
+
+/* Smooth page transitions */
+@layer base {
+  .page-transition {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Improve focus states */
+  *:focus-visible {
+    outline: 2px solid var(--nexo-cyan);
+    outline-offset: 2px;
+  }
+  
+  /* Better mobile tap targets */
+  @media (max-width: 768px) {
+    button, a, [role="button"] {
+      min-height: 44px;
+    }
+  }
+}
