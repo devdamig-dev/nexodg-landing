@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import CinematicLab from "@/components/studio/CinematicLab"
+import CinematicLabFixed from "@/components/studio/CinematicLabFixed"
 
 export const metadata: Metadata = {
   title: "Nexo Web Studio — Quality Lab",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function StudioLabPage() {
-  return <CinematicLab />
+  return <CinematicLabFixed />
 }
