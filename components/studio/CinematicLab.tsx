@@ -12,7 +12,7 @@ import {
   useTransform,
 } from "framer-motion"
 import { ArrowDown, ArrowUpRight, Layers3, MousePointer2, Sparkles } from "lucide-react"
-import { revealUp, stagger, studioEase } from "@/lib/studio/motion"
+import { revealUp, stagger } from "@/lib/studio/motion"
 
 const scenes = [
   {
@@ -137,6 +137,72 @@ function SceneCopy({
   )
 }
 
+function CinematicFocus({
+  progress,
+  reducedMotion,
+}: {
+  progress: MotionValue<number>
+  reducedMotion: boolean | null
+}) {
+  const opacity = useTransform(progress, [0.29, 0.335, 0.445, 0.495], [0, 1, 1, 0])
+  const scale = useTransform(
+    progress,
+    [0.29, 0.39, 0.495],
+    reducedMotion ? [1, 1, 1] : [0.92, 1, 0.965],
+  )
+  const x = useTransform(
+    progress,
+    [0.29, 0.39, 0.495],
+    reducedMotion ? ["0%", "0%", "0%"] : ["-4%", "0%", "2%"],
+  )
+  const imageScale = useTransform(
+    progress,
+    [0.32, 0.47],
+    reducedMotion ? [1, 1] : [1.08, 1.015],
+  )
+
+  return (
+    <div className="pointer-events-none absolute left-[5vw] top-1/2 z-20 hidden aspect-[16/10] w-[41vw] max-w-[760px] -translate-y-1/2 lg:block">
+      <motion.div
+        style={{ opacity, scale, x }}
+        className="relative h-full w-full overflow-hidden rounded-[1.6rem] border border-white/18 bg-black/55 shadow-[0_40px_120px_rgba(0,0,0,.55)] backdrop-blur-xl"
+      >
+        <div className="absolute inset-x-0 top-0 z-20 flex h-11 items-center justify-between border-b border-white/10 bg-black/55 px-4 backdrop-blur-xl">
+          <div className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-white/35" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/22" />
+            <span className="h-1.5 w-1.5 rounded-full bg-white/12" />
+          </div>
+          <span className="text-[9px] uppercase tracking-[0.28em] text-white/42">focus frame / 02</span>
+        </div>
+
+        <motion.div style={{ scale: imageScale }} className="absolute inset-0 pt-11 will-change-transform">
+          <div className="relative h-full w-full overflow-hidden">
+            <Image
+              src="/portfolio/project-2.jpg"
+              alt="Detalle de proyecto NexoDG"
+              fill
+              sizes="41vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-cyan-300/5" />
+          </div>
+        </motion.div>
+
+        <div className="absolute bottom-4 left-4 z-30 flex items-center gap-2 rounded-full border border-white/12 bg-black/45 px-3 py-1.5 text-[9px] uppercase tracking-[0.24em] text-white/58 backdrop-blur-xl">
+          <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,.8)]" />
+          scroll-directed focus
+        </div>
+
+        <span className="absolute left-3 top-14 h-5 w-5 border-l border-t border-cyan-200/55" />
+        <span className="absolute right-3 top-14 h-5 w-5 border-r border-t border-cyan-200/55" />
+        <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-cyan-200/55" />
+        <span className="absolute bottom-3 right-3 h-5 w-5 border-b border-r border-cyan-200/55" />
+      </motion.div>
+    </div>
+  )
+}
+
 function SignatureCard({
   number,
   title,
@@ -182,6 +248,7 @@ export default function CinematicLab() {
   const progressScale = useTransform(smoothProgress, [0, 1], [0, 1])
   const introOpacity = useTransform(smoothProgress, [0, 0.08, 0.16], [1, 1, 0])
   const introY = useTransform(smoothProgress, [0, 0.16], [0, reducedMotion ? 0 : -48])
+  const focusDimOpacity = useTransform(smoothProgress, [0.29, 0.34, 0.45, 0.5], [0, 0.24, 0.24, 0])
 
   return (
     <main className="min-h-screen bg-[#050505] text-white selection:bg-cyan-300 selection:text-black">
@@ -192,7 +259,7 @@ export default function CinematicLab() {
             Nexo Web Studio
           </Link>
           <div className="flex items-center gap-3">
-            <span className="hidden text-xs uppercase tracking-[0.22em] text-white/40 sm:block">Experimental / 001</span>
+            <span className="hidden text-xs uppercase tracking-[0.22em] text-white/40 sm:block">Experimental / 002A</span>
             <Link
               href="/#contacto"
               className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white px-4 py-2 text-xs font-semibold text-black transition-transform duration-300 hover:scale-[1.03]"
@@ -221,6 +288,7 @@ export default function CinematicLab() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,.78)_0%,rgba(0,0,0,.28)_45%,rgba(0,0,0,.66)_100%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(0,0,0,.12)_44%,rgba(0,0,0,.8)_100%)]" />
           <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,.6)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.6)_1px,transparent_1px)] [background-size:80px_80px]" />
+          <motion.div style={{ opacity: focusDimOpacity }} className="absolute inset-0 z-10 bg-black" />
 
           <motion.div
             style={{ opacity: introOpacity, y: introY }}
@@ -240,6 +308,8 @@ export default function CinematicLab() {
               Scroll para recorrer
             </div>
           </motion.div>
+
+          <CinematicFocus progress={smoothProgress} reducedMotion={reducedMotion} />
 
           {scenes.map((scene, index) => (
             <SceneCopy key={scene.title} progress={smoothProgress} index={index} {...scene} />
@@ -311,8 +381,8 @@ export default function CinematicLab() {
 
           <motion.div variants={revealUp} className="mt-16 flex flex-col gap-5 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm text-white/45">Siguiente iteración</p>
-              <p className="mt-1 text-xl font-medium tracking-[-0.03em] text-white">Convertir este laboratorio en el nuevo hero + portfolio de NexoDG.</p>
+              <p className="text-sm text-white/45">Iteración 002A</p>
+              <p className="mt-1 text-xl font-medium tracking-[-0.03em] text-white">El baseline se mantiene intacto y sumamos un único focus shot cinematográfico en la escena 02.</p>
             </div>
             <Link
               href="/"
