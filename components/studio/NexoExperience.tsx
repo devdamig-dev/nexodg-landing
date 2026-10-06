@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import NexoNarrativeV5 from "@/components/studio/NexoNarrativeV5"
+import NexoNarrativeV6 from "@/components/studio/NexoNarrativeV6"
 
 export default function NexoExperience() {
   const { scrollY } = useScroll()
@@ -102,7 +102,7 @@ export default function NexoExperience() {
         />
       </motion.div>
 
-      <NexoNarrativeV5 />
+      <NexoNarrativeV6 />
     </>
   )
 }
