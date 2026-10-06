@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
-import NexoNarrativeV2 from "@/components/studio/NexoNarrativeV2"
+import NexoNarrativeV3 from "@/components/studio/NexoNarrativeV3"
 
 export default function NexoExperience() {
   const { scrollY } = useScroll()
@@ -64,9 +64,7 @@ export default function NexoExperience() {
               transition={{ duration: 1.05, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
               className="mt-6"
             >
-              <p className="text-[clamp(4rem,13.5vw,13.5rem)] font-semibold uppercase leading-[0.77] tracking-[-0.085em] text-white">
-                CONSTRUIMOS
-              </p>
+              <p className="text-[clamp(4rem,13.5vw,13.5rem)] font-semibold uppercase leading-[0.77] tracking-[-0.085em] text-white">CONSTRUIMOS</p>
               <motion.p
                 initial={{ x: 70, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -104,7 +102,7 @@ export default function NexoExperience() {
         />
       </motion.div>
 
-      <NexoNarrativeV2 />
+      <NexoNarrativeV3 />
     </>
   )
 }
