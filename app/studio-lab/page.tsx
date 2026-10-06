@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import CinematicLab from "@/components/studio/CinematicLab"
+import NexoNarrative from "@/components/studio/NexoNarrative"
 
 export const metadata: Metadata = {
-  title: "Nexo Web Studio — Quality Lab",
-  description: "Laboratorio experimental del estándar studio-grade de NexoDG. Baseline 001 restaurada.",
+  title: "NEXODG — Construimos lo que sigue",
+  description: "Diseño + Tecnología + IA. Experiencia narrativa experimental de NexoDG.",
   robots: {
     index: false,
     follow: false,
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function StudioLabPage() {
-  return <CinematicLab />
+  return <NexoNarrative />
 }
