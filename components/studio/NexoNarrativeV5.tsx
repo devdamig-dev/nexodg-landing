@@ -43,14 +43,26 @@ export default function NexoNarrativeV5() {
     return BREATHS.reduce((maxOpacity, breath) => Math.max(maxOpacity, windowOpacity(progress, breath)), 0)
   })
 
+  const versionOpacity = useTransform(stageProgress, (progress) => (progress < 0.998 ? 1 : 0))
+
   return (
     <>
       <NexoNarrativeV4 />
+
       <motion.div
         aria-hidden="true"
         style={{ opacity: breathOpacity }}
         className="pointer-events-none fixed inset-0 z-[65] bg-black"
       />
+
+      <motion.div
+        aria-hidden="true"
+        style={{ opacity: versionOpacity }}
+        className="pointer-events-none fixed left-5 top-24 z-[55] hidden bg-black pr-4 text-[9px] uppercase tracking-[0.24em] text-white/24 lg:block"
+      >
+        <p>NX / DIGITAL SYSTEMS</p>
+        <p className="mt-1">BUILD 2026.10 / V05</p>
+      </motion.div>
     </>
   )
 }
