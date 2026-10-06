@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import NexoNarrative from "@/components/studio/NexoNarrative"
+import NexoExperience from "@/components/studio/NexoExperience"
 
 export const metadata: Metadata = {
   title: "NEXODG — Construimos lo que sigue",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function StudioLabPage() {
-  return <NexoNarrative />
+  return <NexoExperience />
 }
