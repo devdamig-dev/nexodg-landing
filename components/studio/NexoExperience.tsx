@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import NexoNarrative from "@/components/studio/NexoNarrative"
+import NexoNarrativeV2 from "@/components/studio/NexoNarrativeV2"
 
 export default function NexoExperience() {
   return (
@@ -87,7 +87,7 @@ export default function NexoExperience() {
         />
       </motion.div>
 
-      <NexoNarrative />
+      <NexoNarrativeV2 />
     </>
   )
 }
