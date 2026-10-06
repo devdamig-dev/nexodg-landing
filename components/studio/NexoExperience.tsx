@@ -1,15 +1,18 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import NexoNarrativeV2 from "@/components/studio/NexoNarrativeV2"
 
 export default function NexoExperience() {
+  const { scrollY } = useScroll()
+  const openingOpacity = useTransform(scrollY, [0, 18, 230], [1, 1, 0])
+  const openingScale = useTransform(scrollY, [0, 230], [1, 1.035])
+  const openingBlur = useTransform(scrollY, [0, 230], ["blur(0px)", "blur(8px)"])
+
   return (
     <>
       <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: [1, 1, 0] }}
-        transition={{ duration: 3.6, times: [0, 0.79, 1], ease: "easeInOut" }}
+        style={{ opacity: openingOpacity, scale: openingScale, filter: openingBlur }}
         className="pointer-events-none fixed inset-0 z-[120] overflow-hidden bg-black text-white"
         aria-hidden="true"
       >
@@ -22,8 +25,8 @@ export default function NexoExperience() {
 
         <motion.div
           initial={{ opacity: 0, scale: 0.45 }}
-          animate={{ opacity: [0, 0.34, 0.16], scale: [0.45, 1, 1.28] }}
-          transition={{ duration: 2.8, delay: 0.2, ease: "easeOut" }}
+          animate={{ opacity: [0, 0.34, 0.18], scale: [0.45, 1, 1.16] }}
+          transition={{ duration: 3.1, delay: 0.2, ease: "easeOut" }}
           className="absolute left-1/2 top-1/2 h-[54vw] max-h-[780px] w-[54vw] max-w-[780px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00D9D9]/20 blur-[130px]"
         />
 
@@ -34,7 +37,14 @@ export default function NexoExperience() {
           className="absolute inset-x-5 top-5 flex items-center justify-between border-b border-white/10 pb-3 text-[9px] uppercase tracking-[0.3em] text-white/28 sm:inset-x-8 sm:top-7"
         >
           <span>34.7821° S / 58.2523° W</span>
-          <span className="text-[#00D9D9]">INITIALIZING / NX</span>
+          <motion.span
+            initial={{ opacity: 0.35 }}
+            animate={{ opacity: [0.35, 1, 0.55] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="text-[#00D9D9]"
+          >
+            SYSTEM / READY
+          </motion.span>
         </motion.div>
 
         <div className="absolute inset-0 flex items-center px-5 sm:px-8">
@@ -74,7 +84,14 @@ export default function NexoExperience() {
               className="mt-8 flex items-center justify-between gap-6"
             >
               <p className="text-xs tracking-[0.16em] text-white/48 sm:text-sm">Diseño + Tecnología + IA</p>
-              <p className="hidden text-[9px] uppercase tracking-[0.28em] text-white/25 sm:block">experience / loading complete</p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1, 0.45, 1] }}
+                transition={{ duration: 2.2, delay: 2.2, repeat: Infinity, repeatDelay: 0.5 }}
+                className="hidden items-center gap-2 text-[9px] uppercase tracking-[0.28em] text-white/32 sm:flex"
+              >
+                scroll to enter <span className="text-[#00D9D9]">↓</span>
+              </motion.p>
             </motion.div>
           </div>
         </div>
