@@ -72,19 +72,20 @@ float gyroid(vec3 point) {
 }
 
 float localProgress() {
-  return saturate((uProgress - 0.318) / 0.67);
+  return saturate((uProgress - 0.300) / 0.695);
 }
 
 float sceneScale(float local) {
-  float collapse = smoothstep(0.765, 0.91, local);
-  return mix(1.0, 0.12, collapse);
+  float collapse = smoothstep(0.82, 0.965, local);
+  float breathe = 1.0 + sin(local * 3.1415926) * 0.10;
+  return mix(breathe, 0.16, collapse);
 }
 
 vec3 orientPoint(vec3 point, float local) {
   float time = uTime * mix(1.0, 0.0, uReduced);
-  float cameraSpin = -0.25 + local * 1.85;
-  point.yz *= rot(0.48 + sin(local * 6.283) * 0.12 + uPointer.y * 0.12);
-  point.xz *= rot(cameraSpin + time * 0.085 + uPointer.x * 0.16);
+  float cameraSpin = -0.42 + local * 2.35;
+  point.yz *= rot(0.42 + sin(local * 6.283) * 0.18 + uPointer.y * 0.14);
+  point.xz *= rot(cameraSpin + time * 0.072 + uPointer.x * 0.18);
   point.xy *= rot(sin(local * 4.2) * 0.09);
   return point;
 }
@@ -121,9 +122,12 @@ float mapScene(vec3 point) {
   float intelligence = max(aiBoundary, aiField * 0.235);
 
   float shape = system;
-  shape = mix(shape, design, smoothstep(0.20, 0.31, local));
-  shape = mix(shape, technology, smoothstep(0.38, 0.52, local));
-  shape = mix(shape, intelligence, smoothstep(0.56, 0.70, local));
+  shape = mix(shape, design, smoothstep(0.17, 0.33, local));
+  shape = mix(shape, technology, smoothstep(0.34, 0.54, local));
+  shape = mix(shape, intelligence, smoothstep(0.53, 0.74, local));
+
+  float nucleus = sdSphere(p, 0.15 + 0.025 * sin(time * 1.8 + local * 8.0));
+  shape = smoothUnion(shape, nucleus, 0.10);
 
   return shape * scale;
 }
@@ -177,13 +181,16 @@ void main() {
   float local = localProgress();
   float time = uTime * mix(1.0, 0.0, uReduced);
 
-  vec2 pointer = uPointer * vec2(0.23, 0.14);
-  float cameraArc = mix(-0.12, 0.18, local);
-  vec3 origin = vec3(pointer.x, pointer.y, 3.55);
+  vec2 pointer = uPointer * vec2(0.24, 0.15);
+  float cameraArc = mix(-0.22, 0.28, local) + sin(local * 6.283) * 0.05;
+  float pushIn = smoothstep(0.18, 0.42, local) * (1.0 - smoothstep(0.57, 0.80, local));
+  float pullBack = smoothstep(0.78, 0.96, local);
+  vec3 origin = vec3(pointer.x, pointer.y, 3.85 - pushIn * 0.82 + pullBack * 0.48);
   origin.xz *= rot(cameraArc);
-  vec3 target = vec3(pointer.x * 0.16, pointer.y * 0.12, 0.0);
+  vec3 target = vec3(mix(-0.20, 0.24, local) + pointer.x * 0.18, pointer.y * 0.14, 0.0);
   mat3 camera = cameraBasis(origin, target);
-  vec3 direction = normalize(camera * vec3(uv, 1.78));
+  float lens = mix(1.66, 1.92, smoothstep(0.34, 0.68, local));
+  vec3 direction = normalize(camera * vec3(uv, lens));
 
   float glow = 0.0;
   float distanceTravelled = rayMarch(origin, direction, glow);
@@ -228,14 +235,18 @@ void main() {
     color += surface;
   }
 
-  float collapse = smoothstep(0.76, 0.92, local);
+  float collapse = smoothstep(0.82, 0.965, local);
   float angle = atan(uv.y, uv.x);
   float radius = length(uv);
   float radialStreak = pow(max(0.0, sin(angle * 22.0 + time * 0.7)), 20.0);
   radialStreak *= (1.0 - smoothstep(0.16, 1.05, radius)) * smoothstep(0.02, 0.28, radius);
 
   color += CYAN * min(glow * 0.018, 0.48);
-  color += CYAN * radialStreak * collapse * 0.28;
+  color += CYAN * radialStreak * collapse * 0.36;
+
+  float ringField = abs(sin(radius * 30.0 - local * 16.0 + time * 0.45));
+  ringField = smoothstep(0.965, 1.0, ringField) * (1.0 - smoothstep(0.35, 1.35, radius));
+  color += CYAN * ringField * 0.035 * (0.25 + local);
   color *= 0.78 + vignette * 0.38;
 
   float scan = exp(-abs(uv.y - mix(0.72, -0.68, local)) * 85.0);
