@@ -51,37 +51,28 @@ function StateRail({ progress }: { progress: MotionValue<number> }) {
 
 function DesignLayer({ opacity }: { opacity: MotionValue<number> }) {
   return (
-    <motion.div style={{ opacity }} className="absolute inset-[7%] z-[2] grid grid-cols-12 gap-2 border-y border-white/10">
-      {Array.from({ length: 12 }).map((_, index) => (
-        <div key={index} className="relative border-x border-white/[0.055]">
-          {index % 3 === 0 && <span className="absolute left-1 top-2 text-[7px] tracking-[0.2em] text-white/18">{String(index + 1).padStart(2, "0")}</span>}
-        </div>
-      ))}
-      <div className="absolute left-[8%] top-[14%] h-[18%] w-[24%] border border-[#00D9D9]/24" />
-      <div className="absolute right-[10%] top-[22%] h-[31%] w-[21%] border border-white/12" />
-      <div className="absolute bottom-[13%] left-[20%] h-[15%] w-[34%] border border-white/10" />
+    <motion.div style={{ opacity }} className="absolute inset-0 z-[2] overflow-hidden">
+      <div className="absolute left-[7vw] top-[15vh] h-[58vh] w-px bg-gradient-to-b from-transparent via-white/18 to-transparent" />
+      <div className="absolute right-[12vw] top-[8vh] h-[76vh] w-px bg-gradient-to-b from-transparent via-[#00D9D9]/34 to-transparent" />
+      <div className="absolute left-[4vw] right-[6vw] top-[28vh] h-px bg-gradient-to-r from-transparent via-white/16 to-transparent" />
+      <div className="absolute bottom-[18vh] left-[15vw] right-[8vw] h-px bg-gradient-to-r from-transparent via-[#00D9D9]/28 to-transparent" />
+      <div className="absolute left-[11vw] top-[18vh] h-[26vh] w-[31vw] border border-white/10" />
+      <div className="absolute bottom-[13vh] right-[9vw] h-[32vh] w-[26vw] border border-[#00D9D9]/18" />
+      <div className="absolute left-[44vw] top-[10vh] h-[64vh] w-[22vw] -rotate-[7deg] border-x border-white/[0.06]" />
     </motion.div>
   )
 }
 
 function TechnologyLayer({ opacity }: { opacity: MotionValue<number> }) {
   return (
-    <motion.div style={{ opacity }} className="absolute inset-[8%] z-[2]">
-      <div className="absolute left-[5%] top-[14%] w-[30%] border border-white/12 bg-black/55 p-4 font-mono text-[8px] leading-5 text-white/34 backdrop-blur-sm sm:text-[10px]">
-        <p><span className="text-[#00D9D9]">const</span> context = input.resolve()</p>
-        <p>architecture.connect(data)</p>
-        <p>workflow.execute(intent)</p>
-        <p><span className="text-[#00D9D9]">return</span> measurable.output</p>
-      </div>
-      <div className="absolute right-[4%] top-[12%] grid h-[31%] w-[31%] grid-cols-2 gap-2 border border-[#00D9D9]/22 p-3">
-        {Array.from({ length: 4 }).map((_, index) => <div key={index} className="relative border border-white/10"><span className="absolute left-2 top-2 h-1 w-1 rounded-full bg-[#00D9D9] shadow-[0_0_12px_rgba(0,217,217,.8)]" /></div>)}
-      </div>
-      <div className="absolute bottom-[14%] left-[12%] h-px w-[72%] bg-gradient-to-r from-transparent via-[#00D9D9]/50 to-transparent" />
-      <div className="absolute left-[49%] top-[19%] h-[58%] w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-      <div className="absolute bottom-[10%] right-[8%] text-right font-mono text-[8px] leading-5 text-white/24 sm:text-[9px]">
-        <p>API / CRM / DATA / UI</p>
-        <p className="text-[#00D9D9]/55">SYSTEM STATUS / SYNCHRONIZED</p>
-      </div>
+    <motion.div style={{ opacity }} className="absolute inset-0 z-[2] overflow-hidden">
+      <div className="absolute left-1/2 top-1/2 h-[54vmin] w-[54vmin] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10" />
+      <div className="absolute left-1/2 top-1/2 h-[72vmin] w-[30vmin] -translate-x-1/2 -translate-y-1/2 rotate-[31deg] rounded-[50%] border border-[#00D9D9]/22" />
+      <div className="absolute left-1/2 top-1/2 h-[28vmin] w-[78vmin] -translate-x-1/2 -translate-y-1/2 -rotate-[18deg] rounded-[50%] border border-white/10" />
+      <div className="absolute left-[8vw] right-[8vw] top-1/2 h-px bg-gradient-to-r from-transparent via-[#00D9D9]/42 to-transparent" />
+      <div className="absolute bottom-[10vh] left-1/2 top-[10vh] w-px bg-gradient-to-b from-transparent via-white/16 to-transparent" />
+      <span className="absolute left-[18vw] top-[31vh] h-2 w-2 rounded-full bg-[#00D9D9] shadow-[0_0_24px_rgba(0,217,217,.72)]" />
+      <span className="absolute right-[20vw] bottom-[26vh] h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_22px_rgba(255,255,255,.45)]" />
     </motion.div>
   )
 }
@@ -114,11 +105,6 @@ function IntelligenceLayer({ opacity, reducedMotion }: { opacity: MotionValue<nu
           transition={{ duration: 1.7 + (index % 5) * 0.27, repeat: Infinity, delay: index * 0.09 }}
         />
       ))}
-      <div className="absolute right-[5%] top-[11%] text-right font-mono text-[8px] uppercase leading-5 tracking-[0.2em] text-white/25 sm:text-[9px]">
-        <p>context / 0.98</p>
-        <p>confidence / 0.94</p>
-        <p className="text-[#00D9D9]/60">decision / ready</p>
-      </div>
     </motion.div>
   )
 }
@@ -157,6 +143,10 @@ function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<
   const coreScale = useTransform(progress, [0.3, 0.86, 0.948], [0.9, 1.04, 0.62])
   const continuitySweepX = useTransform(progress, [0.30, 0.985], ["-24vw", "124vw"])
   const continuitySweepOpacity = useTransform(progress, [0.30, 0.34, 0.94, 0.985], [0, 0.34, 0.16, 0])
+  const orbitOpacity = useTransform(progress, [0.29, 0.33, 0.9, 0.965], [0, 0.48, 0.34, 0])
+  const orbitRotate = useTransform(progress, [0.3, 0.965], [-18, 176])
+  const orbitScale = useTransform(progress, [0.3, 0.58, 0.8, 0.965], [0.72, 1.02, 1.18, 0.46])
+  const depthWash = useTransform(progress, [0.3, 0.52, 0.73, 0.94], [0.06, 0.16, 0.08, 0.2])
 
   return (
     <motion.div aria-hidden="true" style={{ opacity: overlayOpacity }} className="pointer-events-none fixed inset-0 z-[70] overflow-hidden bg-black text-white">
@@ -173,17 +163,24 @@ function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<
         className="absolute bottom-[10vh] top-[10vh] z-[3] w-px bg-gradient-to-b from-transparent via-[#00D9D9]/65 to-transparent shadow-[0_0_24px_rgba(0,217,217,.35)]"
       />
 
+      <motion.div
+        style={{ opacity: depthWash }}
+        className="absolute left-1/2 top-1/2 z-[1] h-[68vmin] w-[68vmin] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00D9D9] blur-[150px]"
+      />
+      <motion.div
+        style={{ opacity: orbitOpacity, rotate: orbitRotate, scale: orbitScale }}
+        className="absolute left-1/2 top-1/2 z-[4] h-[66vmin] w-[66vmin] -translate-x-1/2 -translate-y-1/2"
+      >
+        <div className="absolute inset-[7%] rounded-[50%] border border-[#00D9D9]/28" />
+        <div className="absolute inset-[19%] rotate-[57deg] rounded-[50%] border border-white/12" />
+        <div className="absolute left-1/2 top-1/2 h-[86%] w-[34%] -translate-x-1/2 -translate-y-1/2 rotate-[28deg] rounded-[50%] border border-[#00D9D9]/18" />
+        <span className="absolute left-[10%] top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-[#00D9D9] shadow-[0_0_26px_rgba(0,217,217,.8)]" />
+      </motion.div>
+
       <DesignLayer opacity={designLayerOpacity} />
       <TechnologyLayer opacity={techLayerOpacity} />
       <IntelligenceLayer opacity={aiLayerOpacity} reducedMotion={reducedMotion} />
 
-      <div className="absolute left-7 top-[86px] z-20 hidden items-center gap-3 text-[8px] uppercase tracking-[0.3em] text-white/28 lg:flex">
-        <span className="text-[#00D9D9]">NEXO CORE</span><span>/</span><span>SHADER ENGINE 07</span>
-      </div>
-      <div className="absolute right-7 top-[86px] z-20 hidden text-right font-mono text-[8px] uppercase leading-5 tracking-[0.22em] text-white/24 lg:block">
-        <p>render / webgl2 raymarch</p>
-        <p className="text-[#00D9D9]/55">camera / scroll + pointer</p>
-      </div>
 
       <motion.div style={{ opacity: systemOpacity, y: systemY }} className="absolute inset-0 z-10 flex items-end justify-center px-8 pb-[15vh] text-center">
         <div>
@@ -217,7 +214,7 @@ function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<
         </div>
       </motion.div>
 
-      <motion.div style={{ opacity: convergenceOpacity, scale: convergenceScale }} className="absolute inset-0 z-30 flex items-center justify-center bg-black/82 px-8 text-center backdrop-blur-[4px]">
+      <motion.div style={{ opacity: convergenceOpacity, scale: convergenceScale }} className="absolute inset-0 z-30 flex items-center justify-center bg-black/58 px-8 text-center backdrop-blur-[2px]">
         <div className="w-full max-w-[1500px]">
           <p className="text-[9px] uppercase tracking-[0.36em] text-white/34 sm:text-xs">tres capacidades / un solo sistema</p>
           <motion.p style={{ letterSpacing: convergenceTracking }} className="mt-5 text-[clamp(4.1rem,11.5vw,11.5rem)] font-semibold uppercase leading-[0.76] text-white">
@@ -226,7 +223,7 @@ function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<
         </div>
       </motion.div>
 
-      <motion.div style={{ opacity: resolutionOpacity, y: resolutionY }} className="absolute inset-0 z-40 flex items-center bg-black px-8">
+      <motion.div style={{ opacity: resolutionOpacity, y: resolutionY }} className="absolute inset-0 z-40 flex items-center bg-black/88 px-8 backdrop-blur-[2px]">
         <div className="mx-auto w-full max-w-[1500px]">
           <p className="text-xs font-semibold tracking-[0.5em] text-[#00D9D9] sm:text-sm">NEXODG</p>
           <div className="mt-8 grid gap-10 lg:grid-cols-[1.18fr_.82fr] lg:items-end">
@@ -273,7 +270,7 @@ export default function NexoNarrativeV7() {
         className="pointer-events-none fixed left-5 top-24 z-[76] hidden bg-black pr-4 text-[9px] uppercase tracking-[0.24em] text-white/24 lg:block"
       >
         <p>NX / DIGITAL SYSTEMS</p>
-        <p className="mt-1">BUILD 2026.10 / V08</p>
+        <p className="mt-1">BUILD 2026.10 / V09</p>
       </motion.div>
     </>
   )
