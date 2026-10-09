@@ -124,40 +124,42 @@ function IntelligenceLayer({ opacity, reducedMotion }: { opacity: MotionValue<nu
 }
 
 function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<number>; reducedMotion: boolean | null }) {
-  const overlayOpacity = useTransform(progress, [0.312, 0.336, 0.982, 1], [0, 1, 1, 0])
+  const overlayOpacity = useTransform(progress, [0.298, 0.326, 0.992, 1], [0, 1, 1, 0])
 
-  const systemOpacity = useTransform(progress, [0.325, 0.352, 0.475, 0.498], [0, 1, 1, 0])
-  const systemY = useTransform(progress, [0.325, 0.385, 0.498], [50, 0, -44])
-  const systemScale = useTransform(progress, [0.33, 0.42, 0.495], [0.76, 1, 1.08])
+  const systemOpacity = useTransform(progress, [0.312, 0.34, 0.492, 0.525], [0, 1, 1, 0])
+  const systemY = useTransform(progress, [0.312, 0.385, 0.525], [64, 0, -72])
+  const systemScale = useTransform(progress, [0.318, 0.42, 0.525], [0.72, 1, 1.12])
 
-  const designOpacity = useTransform(progress, [0.495, 0.522, 0.592, 0.614], [0, 1, 1, 0])
-  const designX = useTransform(progress, [0.495, 0.552, 0.614], [-110, 0, 54])
-  const designClip = useTransform(progress, [0.495, 0.535, 0.602], ["inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0% 0 0)"])
-  const designLayerOpacity = useTransform(progress, [0.488, 0.525, 0.595, 0.62], [0, 0.62, 0.48, 0])
+  const designOpacity = useTransform(progress, [0.472, 0.505, 0.612, 0.646], [0, 1, 1, 0])
+  const designX = useTransform(progress, [0.472, 0.552, 0.646], [-150, 0, 96])
+  const designClip = useTransform(progress, [0.472, 0.515, 0.626], ["inset(0 100% 0 0)", "inset(0 0% 0 0)", "inset(0 0% 0 0)"])
+  const designLayerOpacity = useTransform(progress, [0.456, 0.505, 0.62, 0.662], [0, 0.72, 0.5, 0])
 
-  const techOpacity = useTransform(progress, [0.608, 0.636, 0.704, 0.728], [0, 1, 1, 0])
-  const techX = useTransform(progress, [0.608, 0.666, 0.728], [120, 0, -56])
-  const techBlur = useTransform(progress, [0.608, 0.642, 0.71, 0.728], ["blur(12px)", "blur(0px)", "blur(0px)", "blur(10px)"])
-  const techLayerOpacity = useTransform(progress, [0.602, 0.638, 0.707, 0.733], [0, 0.58, 0.46, 0])
+  const techOpacity = useTransform(progress, [0.598, 0.63, 0.738, 0.772], [0, 1, 1, 0])
+  const techX = useTransform(progress, [0.598, 0.672, 0.772], [160, 0, -105])
+  const techBlur = useTransform(progress, [0.598, 0.632, 0.742, 0.772], ["blur(16px)", "blur(0px)", "blur(0px)", "blur(12px)"])
+  const techLayerOpacity = useTransform(progress, [0.578, 0.625, 0.742, 0.786], [0, 0.66, 0.48, 0])
 
-  const aiOpacity = useTransform(progress, [0.72, 0.748, 0.818, 0.842], [0, 1, 1, 0])
-  const aiScale = useTransform(progress, [0.72, 0.772, 0.842], [0.62, 1, 1.18])
-  const aiLetterSpacing = useTransform(progress, [0.72, 0.79], ["-0.18em", "-0.08em"])
-  const aiLayerOpacity = useTransform(progress, [0.713, 0.75, 0.818, 0.846], [0, 0.7, 0.55, 0])
+  const aiOpacity = useTransform(progress, [0.712, 0.746, 0.842, 0.874], [0, 1, 1, 0])
+  const aiScale = useTransform(progress, [0.712, 0.78, 0.874], [0.54, 1, 1.24])
+  const aiLetterSpacing = useTransform(progress, [0.712, 0.8], ["-0.20em", "-0.07em"])
+  const aiLayerOpacity = useTransform(progress, [0.69, 0.742, 0.848, 0.888], [0, 0.78, 0.56, 0])
 
-  const convergenceOpacity = useTransform(progress, [0.835, 0.858, 0.895, 0.918], [0, 1, 1, 0])
-  const convergenceScale = useTransform(progress, [0.835, 0.875, 0.918], [0.84, 1, 1.06])
-  const convergenceTracking = useTransform(progress, [0.842, 0.89], ["-0.12em", "-0.075em"])
+  const convergenceOpacity = useTransform(progress, [0.826, 0.856, 0.912, 0.942], [0, 1, 1, 0])
+  const convergenceScale = useTransform(progress, [0.826, 0.882, 0.942], [0.8, 1, 1.09])
+  const convergenceTracking = useTransform(progress, [0.826, 0.9], ["-0.14em", "-0.07em"])
 
-  const resolutionOpacity = useTransform(progress, [0.91, 0.936, 0.982, 0.997], [0, 1, 1, 0])
-  const resolutionY = useTransform(progress, [0.91, 0.95, 0.997], [56, 0, -42])
-  const resolutionLine = useTransform(progress, [0.932, 0.976], [0, 1])
+  const resolutionOpacity = useTransform(progress, [0.902, 0.934, 0.992, 1], [0, 1, 1, 0])
+  const resolutionY = useTransform(progress, [0.902, 0.952, 1], [72, 0, -24])
+  const resolutionLine = useTransform(progress, [0.928, 0.984], [0, 1])
 
-  const coreOpacity = useTransform(progress, [0.315, 0.34, 0.84, 0.915], [0, 1, 1, 0])
-  const coreScale = useTransform(progress, [0.32, 0.84, 0.915], [0.94, 1, 0.72])
+  const coreOpacity = useTransform(progress, [0.296, 0.326, 0.872, 0.948], [0, 1, 1, 0])
+  const coreScale = useTransform(progress, [0.3, 0.86, 0.948], [0.9, 1.04, 0.62])
+  const continuitySweepX = useTransform(progress, [0.30, 0.985], ["-24vw", "124vw"])
+  const continuitySweepOpacity = useTransform(progress, [0.30, 0.34, 0.94, 0.985], [0, 0.34, 0.16, 0])
 
   return (
-    <motion.div aria-hidden="true" style={{ opacity: overlayOpacity }} className="pointer-events-none fixed inset-0 z-[60] overflow-hidden bg-black text-white">
+    <motion.div aria-hidden="true" style={{ opacity: overlayOpacity }} className="pointer-events-none fixed inset-0 z-[70] overflow-hidden bg-black text-white">
       <motion.div style={{ opacity: coreOpacity, scale: coreScale }} className="absolute inset-0">
         <NexoWebGLCore progress={progress} reducedMotion={reducedMotion} />
       </motion.div>
@@ -165,6 +167,11 @@ function SignatureSequence({ progress, reducedMotion }: { progress: MotionValue<
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,transparent_0%,rgba(0,0,0,.08)_42%,rgba(0,0,0,.88)_100%)]" />
       <div className="absolute inset-x-0 top-0 h-[13vh] bg-gradient-to-b from-black via-black/50 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-[15vh] bg-gradient-to-t from-black via-black/45 to-transparent" />
+
+      <motion.div
+        style={{ x: continuitySweepX, opacity: continuitySweepOpacity }}
+        className="absolute bottom-[10vh] top-[10vh] z-[3] w-px bg-gradient-to-b from-transparent via-[#00D9D9]/65 to-transparent shadow-[0_0_24px_rgba(0,217,217,.35)]"
+      />
 
       <DesignLayer opacity={designLayerOpacity} />
       <TechnologyLayer opacity={techLayerOpacity} />
@@ -263,10 +270,10 @@ export default function NexoNarrativeV7() {
       <motion.div
         aria-hidden="true"
         style={{ opacity: versionOpacity }}
-        className="pointer-events-none fixed left-5 top-24 z-[66] hidden bg-black pr-4 text-[9px] uppercase tracking-[0.24em] text-white/24 lg:block"
+        className="pointer-events-none fixed left-5 top-24 z-[76] hidden bg-black pr-4 text-[9px] uppercase tracking-[0.24em] text-white/24 lg:block"
       >
         <p>NX / DIGITAL SYSTEMS</p>
-        <p className="mt-1">BUILD 2026.10 / V07</p>
+        <p className="mt-1">BUILD 2026.10 / V08</p>
       </motion.div>
     </>
   )
